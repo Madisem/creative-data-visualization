@@ -1,0 +1,231 @@
+Population,Country,Region
+Abazin.HO,Russia,Karachay-Cherkessia
+Abkhasian.HO,Georgia,Abkhazia
+Adygei.DG,Russia,Republic of Adygea
+Adygei.HO,Russia,Republic of Adygea
+Albanian.DG,Albania,Various regions
+Albanian.HO,Albania,Various regions
+Aleut.DG,United States,"Aleutian Islands, Alaska"
+Aleut.HO,United States,"Aleutian Islands, Alaska"
+Altaian.DG,Russia,Altai Republic
+Altaian.HO,Russia,Altai Republic
+Altaian.SG,Russia,Altai Republic
+Ami.DG,Taiwan,Hualien and Taitung
+Ami.HO,Taiwan,Hualien and Taitung
+Armenian.DG,Armenia,Yerevan and surrounding regions
+Armenian_Hemsheni.HO,Armenia,Northern Armenia
+Armenian.HO,Armenia,Yerevan and surrounding regions
+Armenian.WGA.HO,Armenia,Yerevan and surrounding regions
+Atayal.DG,Taiwan,Northern and Central Mountains
+Atayal.HO,Taiwan,Northern and Central Mountains
+Avar.HO,Russia,Republic of Dagestan
+Avar.SG,Russia,Republic of Dagestan
+Azeri.HO,Azerbaijan,Baku and surrounding areas
+Azeri.WGA.HO,Azerbaijan,Baku and surrounding areas
+Balkar.HO,Russia,Kabardino-Balkaria
+Bashkir.HO,Russia,Republic of Bashkortostan
+Bashkir.SG,Russia,Republic of Bashkortostan
+Basque.DG,Spain,Basque Country
+Basque.HO,Spain,Basque Country
+Belarusian.HO,Belarus,Various regions
+Besermyan.HO,Russia,Udmurt Republic
+Bulgarian.DG,Bulgaria,"Sofia, Plovdiv and others"
+Bulgarian.HO,Bulgaria,"Sofia, Plovdiv and others"
+Buryat.HO,Russia,Republic of Buryatia
+Buryat.SG,Russia,Republic of Buryatia
+Cambodian.DG,Cambodia,"Various regions (e.g., Phnom Penh)"
+Cambodian.HO,Cambodia,"Various regions (e.g., Phnom Penh)"
+Chechen.DG,Russia,Chechen Republic
+Chechen.HO,Russia,Chechen Republic
+Chukchi.DG,Russia,Chukotka Autonomous Okrug
+Chukchi.HO,Russia,Chukotka Autonomous Okrug
+Chuvash.HO,Russia,Chuvash Republic
+Circassian.HO,Russia,Republic of Adygea and Kabardino-Balkaria
+Croatian.HO,Croatia,"Various regions (e.g., Zagreb, Split)"
+Cypriot.HO,Cyprus,"Various regions (e.g., Nicosia, Limassol)"
+Czech.DG,Czech Republic,"Various regions (e.g., Prague, Moravia)"
+Czech.HO,Czech Republic,"Various regions (e.g., Prague, Moravia)"
+Dai.DG,China,Yunnan Province
+Dai.HO,China,Yunnan Province
+Darginian.HO,Russia,Republic of Dagestan
+Daur.DG,China,Inner Mongolia
+Daur.HO,China,Inner Mongolia
+Dolgan.HO,Russia,Krasnoyarsk Krai (Taimyr Peninsula)
+Dungan.HO,Kyrgyzstan,Chuy Region
+Dungan.SG,Kyrgyzstan,Chuy Region
+earlyXiongnu,Mongolia,Xiongnu archaeological sites
+Enets.HO,Russia,Krasnoyarsk Krai (Taimyr Peninsula)
+English.DG,United Kingdom,England
+English.HO,United Kingdom,England
+Eskimo_ChaplinSireniki.HO,Russia,Chukotka Autonomous Okrug
+Eskimo_Naukan.DG,Russia,Chukotka Autonomous Okrug
+Eskimo_Naukan.HO,Russia,Chukotka Autonomous Okrug
+Estonian.DG,Estonia,"Various regions (e.g., Tallinn, Tartu)"
+Estonian.HO,Estonia,"Various regions (e.g., Tallinn, Tartu)"
+Even.DG,Russia,Yakutia and Magadan Region
+Even.HO,Russia,Yakutia and Magadan Region
+Evenk_FarEast.HO,Russia,Far Eastern Russia
+Evenk_Transbaikal.HO,Russia,Zabaykalsky Krai
+Ezid.HO,Iraq,Sinjar Region
+Finnish.DG,Finland,"Various regions (e.g., Helsinki, Tampere)"
+Finnish.HO,Finland,"Various regions (e.g., Helsinki, Tampere)"
+French.DG,France,"Various regions (e.g., Île-de-France, Brittany)"
+French.HO,France,"Various regions (e.g., Île-de-France, Brittany)"
+Gagauz.HO,Moldova,Gagauzia
+Georgian.DG,Georgia,"Various regions (e.g., Tbilisi, Kakheti)"
+Georgian.HO,,
+Georgian.WGA.HO,,
+Greek.HO,Greece,"Various regions (e.g., Athens, Thessaloniki)"
+Greek.WGA.HO,Greece,"Various regions (e.g., Athens, Thessaloniki)"
+Han.DG,China,"Various provinces (e.g., Beijing, Guangdong)"
+Han.HO,China,"Various provinces (e.g., Beijing, Guangdong)"
+Hezhen.DG,China,Heilongjiang Province
+Hezhen.HO,China,Heilongjiang Province
+Hungarian.DG,Hungary,"Various regions (e.g., Budapest, Debrecen)"
+Hungarian.HO,Hungary,"Various regions (e.g., Budapest, Debrecen)"
+Icelandic.DG,Iceland,Reykjavík and surrounding areas
+Icelandic.HO,Iceland,Reykjavík and surrounding areas
+Ingushian.HO,Russia,Republic of Ingushetia
+Italian_North.DG,Italy,"Northern Italy (e.g., Lombardy, Veneto)"
+Italian_North.HO,Italy,"Northern Italy (e.g., Lombardy, Veneto)"
+Italian_South.HO,Italy,"Southern Italy (e.g., Calabria, Sicily)"
+Itelmen.DG,Russia,Kamchatka Krai
+Itelmen.HO,Russia,Kamchatka Krai
+Japanese.DG,Japan,"Various regions (e.g., Tokyo, Kyoto)"
+Japanese.HO,Japan,"Various regions (e.g., Tokyo, Kyoto)"
+Jew_Ashkenazi.HO,Various,"Europe, mainly Central and Eastern"
+Jew_Georgian.HO,Georgia,Tbilisi and surrounding areas
+Kabardinian.HO,Russia,Kabardino-Balkaria
+Kaitag.HO,Russia,Dagestan
+Kalmyk.HO,Russia,Republic of Kalmykia
+Kalmyk.SG,Russia,Republic of Kalmykia
+Karachai.HO,Russia,Karachay-Cherkessia
+Karakalpak.HO,Uzbekistan,Republic of Karakalpakstan
+Karakalpak.SG,Uzbekistan,Republic of Karakalpakstan
+Karelian.HO,Russia,Republic of Karelia
+Kazakh.HO,Kazakhstan,"Various regions (e.g., Almaty, Astana)"
+Kazakh.SG,Kazakhstan,"Various regions (e.g., Almaty, Astana)"
+Ket.HO,Russia,Krasnoyarsk Krai (Yenisei River area)
+Khakass.HO,Russia,Republic of Khakassia
+Khamnegan.HO,Russia,Buryatia and Irkutsk Oblast
+Kinh.DG,Vietnam,"Various regions (e.g., Hanoi, Ho Chi Minh City)"
+Kinh.HO,Vietnam,"Various regions (e.g., Hanoi, Ho Chi Minh City)"
+Korean.DG,South Korea,"Various regions (e.g., Seoul, Busan)"
+Korean.HO,South Korea,"Various regions (e.g., Seoul, Busan)"
+Koryak.HO,Russia,Kamchatka Krai
+Koryak.SG,Russia,Kamchatka Krai
+Kubachinian.HO,Russia,Dagestan
+Kumyk.HO,Russia,Dagestan
+Kurd.HO,Iraq,Kurdistan Region
+Kurd.WGA.HO,Iraq,Kurdistan Region
+Lak.HO,Russia,Dagestan
+lateXiongnu,Mongolia,Xiongnu archaeological sites
+lateXiongnu_han,Mongolia,Xiongnu-Han contact zones
+lateXiongnu_sarmatian,Mongolia,Xiongnu-Sarmatian contact zones
+Lezgin.DG,Russia,Dagestan
+Lezgin.HO,Russia,Dagestan
+Lithuanian.HO,Lithuania,"Various regions (e.g., Vilnius, Kaunas)"
+Maltese.HO,Malta,Malta Island
+Mansi.DG,Russia,Khanty-Mansi Autonomous Okrug
+Mansi.HO,Russia,Khanty-Mansi Autonomous Okrug
+Miao.DG,China,Guizhou and Guangxi
+Miao.HO,China,Guizhou and Guangxi
+Moldavian.HO,Moldova,"Various regions (e.g., Chișinău)"
+Mongola.DG,China,Inner Mongolia
+Mongola.HO,China,Inner Mongolia
+Mongol.HO,Mongolia,Various regions
+Mordovian.HO,Russia,Republic of Mordovia
+Nanai.HO,Russia,Khabarovsk Krai
+Naxi.DG,China,Yunnan Province
+Naxi.HO,China,Yunnan Province
+Negidal.HO,Russia,Khabarovsk Krai
+Nganasan.HO,Russia,Taimyr Peninsula
+Nivh.HO,Russia,Sakhalin and Khabarovsk Krai
+Norwegian.DG,Norway,"Various regions (e.g., Oslo, Bergen)"
+Norwegian.HO,Norway,"Various regions (e.g., Oslo, Bergen)"
+Orcadian.DG,United Kingdom,Orkney Islands
+Orcadian.HO,United Kingdom,Orkney Islands
+Oroqen.DG,China,Inner Mongolia and Heilongjiang
+Oroqen.HO,China,Inner Mongolia and Heilongjiang
+Ossetian.HO,Russia,North Ossetia–Alania
+Polish.DG,Poland,"Various regions (e.g., Warsaw, Kraków)"
+Romanian.HO,Romania,"Various regions (e.g., Bucharest, Transylvania)"
+Russian_Archangelsk_Krasnoborsky.HO,Russia,Arkhangelsk Oblast - Krasnoborsky District
+Russian_Archangelsk_Leshukonsky.HO,Russia,Arkhangelsk Oblast - Leshukonsky District
+Russian_Archangelsk_Pinezhsky.HO,Russia,Arkhangelsk Oblast - Pinezhsky District
+Russian.DG,Russia,"Various regions (e.g., Moscow, Saint Petersburg)"
+Russian.HO,Russia,"Various regions (e.g., Moscow, Saint Petersburg)"
+Saami.DG,Russia,Murmansk Oblast
+Saami.WGA.HO,Russia,Murmansk Oblast
+Sardinian.DG,Italy,Sardinia
+Sardinian.HO,,
+SBB001.A0101,,
+SBB002.A0101,,
+SBB003.A0101,,
+SBB004.A0101,,
+SBB005.A0101,,
+SBB006.A0101,,
+SBB007.A0101,,
+SBB008.A0101,,
+SBB009.A0101,,
+SBB010.A0101,,
+Scottish.HO,United Kingdom,Scotland
+Selkup.HO,Russia,Tomsk Oblast and Yamalo-Nenets
+She.DG,China,"Fujian, Zhejiang, Jiangxi Provinces"
+She.HO,China,"Fujian, Zhejiang, Jiangxi Provinces"
+Sherpa.HO,Nepal,"Solukhumbu District, Himalayas"
+Shor_Khakassia.HO,Russia,Republic of Khakassia
+Shor_Mountain.HO,Russia,Kemerovo Oblast (Mountain Shoria)
+Sicilian.HO,Italy,Sicily
+Spanish.DG,Spain,"Various regions (e.g., Madrid, Catalonia)"
+Spanish.HO,Spain,"Various regions (e.g., Madrid, Catalonia)"
+Spanish_North.HO,Spain,"Northern Spain (e.g., Asturias, Galicia)"
+Tabasaran.HO,Russia,Dagestan
+Tajik.DG,Tajikistan,"Various regions (e.g., Dushanbe, Sughd)"
+Tajik.HO,Tajikistan,"Various regions (e.g., Dushanbe, Sughd)"
+Tajik.SG,Tajikistan,"Various regions (e.g., Dushanbe, Sughd)"
+TAK001,,
+TAK002.A0101,,
+TAK003.A0101,,
+TAK004.A0101,,
+TAK005.A0101,,
+TAK006.A0101,,
+TAK008.A0101,,
+TAK009.A0101,,
+Tatar_Kazan.HO,Russia,Republic of Tatarstan (Kazan)
+Tatar_Mishar.HO,Russia,Mordovia and Penza Oblast
+Tatar_Siberian.HO,Russia,"Siberia (e.g., Tyumen, Omsk)"
+Tatar_Siberian_Zabolotniye.HO,Russia,Siberia (Zabolotniye region)
+Thai.DG,Thailand,"Various regions (e.g., Bangkok, Chiang Mai)"
+Thai.HO,Thailand,"Various regions (e.g., Bangkok, Chiang Mai)"
+Tibetan.HO,China,Tibet Autonomous Region
+Todzin.HO,Russia,Tuva Republic (Todzhinsky District)
+Tofalar.HO,Russia,Irkutsk Oblast
+Tubalar.DG,Russia,Altai Republic
+Tubalar.HO,Russia,Altai Republic
+Tu.DG,China,Qinghai and Gansu Provinces
+Tu.HO,China,Qinghai and Gansu Provinces
+Tujia.DG,China,Hunan and Hubei Provinces
+Tujia.HO,China,Hunan and Hubei Provinces
+Turkish_Balikesir.HO,Turkey,Balıkesir Province
+Turkish.DG,Turkey,"Various regions (e.g., Istanbul, Ankara)"
+Turkish.HO,Turkey,"Various regions (e.g., Istanbul, Ankara)"
+Turkmen.HO,Turkmenistan,"Various regions (e.g., Ashgabat, Mary)"
+Turkmen.SG,Turkmenistan,"Various regions (e.g., Ashgabat, Mary)"
+Tuvinian.HO,Russia,Tuva Republic
+Udmurt.HO,Russia,Udmurt Republic
+Ukrainian.HO,Ukraine,"Various regions (e.g., Kyiv, Lviv)"
+Ulchi.DG,Russia,Khabarovsk Krai
+Ulchi.HO,Russia,Khabarovsk Krai
+Uyghur.DG,China,Xinjiang Uyghur Autonomous Region
+Uyghur.HO,China,Xinjiang Uyghur Autonomous Region
+Uyghur.SG,China,Xinjiang Uyghur Autonomous Region
+Uzbek.HO,Uzbekistan,"Various regions (e.g., Tashkent, Samarkand)"
+Uzbek.SG,Uzbekistan,"Various regions (e.g., Tashkent, Samarkand)"
+Veps.HO,Russia,Republic of Karelia and Leningrad Oblast
+Xibo.DG,China,Xinjiang and Liaoning Provinces
+Xibo.HO,China,Xinjiang and Liaoning Provinces
+Yakut.DG,Russia,Sakha Republic (Yakutia)
+Yakut.HO,Russia,Sakha Republic (Yakutia)
+Yi.DG,China,"Yunnan, Sichuan, and Guizhou Provinces"
+Yi.HO,China,"Yunnan, Sichuan, and Guizhou Provinces"

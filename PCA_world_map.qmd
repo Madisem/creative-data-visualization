@@ -1,0 +1,357 @@
+---
+title: "Visualization"
+author: "Madina"
+format: html
+editor: visual
+---
+
+## **When Genetic geography meets real-world geography**
+
+My goal/idea is Overlaying PCA results on a world map to show the correlation between genetic distances and geographical origins.
+
+Creative-nontraditional-artistic output of the PCA \<- How genetic world will look like?
+
+Dataset is my own work from data replication project, which directly related to my field of study (population genetic analyses).
+
+Usually the PCA represented the genetic distance of the population collected from different countries, and in representing the data on PCA, PC1 always represents the geographical gradient from west to east, while PC2 is north to south cline. However, its not visually presented how much the genetic PCA of population actually represent the geographically.
+
+The smartpca function out generated .evec and .eval files. I use .evec file to visualize the genetic relationship.
+
+I saved the all plot outputs in the output folder (because in quarto html they are not visually good, need to be enlarged - or better look shiny app)
+
+I am trying to generate the PCA plot using my eigenvector data.
+
+This is the PCA mostly presented in the papers \[traditional version\]
+
+```{r}
+library(plotly)
+library(ggplot2)
+library(ggpubr)
+library(stringr)
+library(dplyr)
+```
+
+```{r}
+evecDat <- read.table("/Users/madinaseidualy/Desktop/Data_Analyses/creative-data-visualization/data/v54_TAK_SBB_HO_PCA.evec", col.names=c("Sample","PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9","PC10","Pop"))
+
+keep <- read.csv("/Users/madinaseidualy/Desktop/Data_Analyses/creative-data-visualization/data/PCA_pop_marker_plot.csv")
+evecDat_plotting <- merge(evecDat, keep, by = "Pop")
+
+evecDat_plotting <- evecDat_plotting |> arrange(Transparency) 
+### to arrange visibility, less transparent on behind
+samples <- as.character(evecDat_plotting$Group)
+shapes <- evecDat_plotting$Shape
+colors <- as.character(evecDat_plotting$Color)
+sizes <- evecDat_plotting$Size
+transparency <- evecDat_plotting$Transparency
+fill <- as.character(evecDat_plotting$Fill)
+Sample_ID <- as.character(evecDat_plotting$Sample)
+
+# Plot
+
+ggplot(evecDat_plotting, aes(PC1, PC2)) + 
+  geom_point(aes(shape=samples, color=samples, fill = samples, size = samples), alpha = transparency)+ 
+  labs(title = "PCA\n",x="PC 1",y="PC 2") + 
+  scale_shape_manual(name = "Samples", breaks=samples, labels = samples,values= shapes)+ 
+  scale_fill_manual(name = "Samples", breaks=samples, labels = samples,values= fill) + 
+  scale_color_manual(name = "Samples", breaks=samples, labels = samples,values= colors) + 
+  scale_size_manual(name = "Samples", breaks=samples, labels = samples,values= sizes) + theme_minimal() +
+  theme(legend.text=element_text(size=7), legend.position = c(0.01, 0.99),legend.justification = c("left", "top"),legend.key.size = unit(0.2, "cm"))
+```
+
+## Further steps applied
+
+Step 1: Here, I am trying to at first plot PCA according to their country color.
+
+I changed the metadata of the populations manually, only adding country column. Also, for this project I removed ancient samples, I am focusing on visualization of the modern population genetics for now.
+
+After designing according to the population dataset, I colored population points respective to their country to see the distribution of the country.
+
+```{r}
+keep <- read.csv("/Users/madinaseidualy/Desktop/Data_Analyses/visualization/PCA_pop_marker_country_modern.csv")
+evecDat_plotting <- merge(evecDat, keep, by = "Pop")
+evecDat_plotting$Country <- as.factor(evecDat_plotting$Country)
+Country=evecDat_plotting$Country
+
+evecDat_plotting <- evecDat_plotting |> arrange(Transparency) 
+### to arrange visibility
+#I uploaded new metadata - where ancient samples are removed, so setting variables again
+samples <- as.character(evecDat_plotting$Group)
+transparency <- evecDat_plotting$Transparency
+ggplot(evecDat_plotting, aes(PC1, PC2)) +
+  geom_point(aes(color = Country, shape = samples, fill = samples, size = samples), alpha = transparency) +
+  labs(title = "PCA Colored by Country", x = "PC1", y = "PC2") +
+  theme_minimal() +
+  scale_size_manual(values = evecDat_plotting$Size) +
+  theme(
+    legend.position = "right",
+    legend.text = element_text(size = 7),
+    legend.key.size = unit(0.3, "cm")
+  )
+
+ggsave("output/pca_poinst_by_country.png", width = 8, height = 6, dpi = 300, bg = "white")
+
+```
+
+Step 2: Detecting the area occupied by samples from each country like their PCA cluster shape. Then, I converted that PCA cluster into a polygon.
+
+```{r}
+polygon_data <- evecDat_plotting %>%
+  group_by(Country) %>%
+  slice(chull(PC1, PC2))   
+
+# Step 2: Plot with shaded polygons
+ggplot() +
+  geom_polygon(data = polygon_data, aes(x = PC1, y = PC2, group = Country, fill = Country), alpha = 0.2, color = NA) +
+  geom_point(data = evecDat_plotting, aes(x = PC1, y = PC2, color = Country, shape = samples, fill = samples, size = samples), alpha = evecDat_plotting$Transparency, show.legend = FALSE) +
+  scale_size_manual(values = evecDat_plotting$Size) +
+  labs(title = "PCA with Country Areas Highlighted", x = "PC1", y = "PC2") +
+  theme_minimal() +
+  theme(
+    legend.position = "right",
+    legend.text = element_text(size = 7),
+    legend.key.size = unit(0.3, "cm")
+  )
+ggsave("output/pca_polygon_by_country.png", width = 8, height = 6, dpi = 300, bg = "white")
+
+```
+
+Step3: now I am extracting country maps for those population then will replace those polygons with the actual country maps
+
+For that used the package "maps"/"mapdata"
+
+```{r}
+#install.packages("maps")
+#install.packages("mapdata")
+library(maps)
+library(mapdata)
+
+```
+
+```{r}
+my_countries <- unique(evecDat_plotting$Country)
+map_countries <- tolower(my_countries)
+
+# Get map data for these countries
+country_map_data <- map_data("world", region = map_countries)
+
+country_labels <- country_map_data |>
+  group_by(region) |>
+  summarise(
+    lon = mean(range(long, na.rm = TRUE)),
+    lat = mean(range(lat, na.rm = TRUE))
+  )
+
+# Plot them
+ggplot() +
+  geom_polygon(data = country_map_data,
+               aes(x = long, y = lat, group = group, fill = region),
+               color = "black", alpha = 0.8, show.legend = FALSE) +
+  geom_text(data = country_labels,
+            aes(x = lon, y = lat, label = region),
+            size = 1.5, fontface = "bold", color = "black") +
+  coord_quickmap() +
+  theme_minimal() +
+  labs(title = "Countries from PCA Dataset", fill = "Country") +
+  theme(
+    legend.key.size = unit(0.2, "cm"),
+    legend.text = element_text(size = 7),
+    legend.title = element_text(size = 8)
+  )
+
+ggsave("output/map_of_countries.png", width = 8, height = 6, dpi = 300, bg = "white")
+```
+
+## Geographic Warping or Map fitting
+
+Step 4: I have to scale the country maps to the size of the PCA cluster 
+
+In the function - warp_map_to_pca - I am giving as input my PCA country maps (extracted from world maps), each country, and my pca data (with population country information).
+
+It takes the Latitude and longitude of the country map - transforms it to 0 to 1 dimension;
+
+The same - getting polygon of the sample distribution area for country is done
+
+Then scaling the actual country map to the polygon;
+
+```{r}
+library(scales)
+normalize_coords <- function(df, xcol = "long", ycol = "lat") {
+  df |>
+    mutate(
+      norm_x = rescale(.data[[xcol]], to = c(0, 1)),
+      norm_y = rescale(.data[[ycol]], to = c(0, 1))
+    )
+}
+
+warp_map_to_pca <- function(country_name, map_df, pca_df) {
+  # Extract country shape from map
+  country_map <- map_df |> filter(region == country_name)
+  if (nrow(country_map) == 0) return(NULL)
+
+  # Normalize map coordinates
+  map_norm <- normalize_coords(country_map)
+
+  # Get PCA polygon
+  pca_points <- pca_df |> filter(Country == country_name)
+  hull <- pca_points[chull(pca_points$PC1, pca_points$PC2), ]
+  
+  #PCA polygon raange
+  pca_bbox <- list(
+    x = range(hull$PC1),
+    y = range(hull$PC2)
+  )
+  
+  # Scale normalized map to PCA polygon
+  transformed_map <- map_norm |>
+    mutate(
+      PCAx = pca_bbox$x[1] + (pca_bbox$x[2] - pca_bbox$x[1]) * norm_x,
+      PCAy = pca_bbox$y[1] + (pca_bbox$y[2] - pca_bbox$y[1]) * norm_y,
+      Country = country_name
+    )
+  
+  return(transformed_map)
+}
+
+```
+
+Step 5: Applying scaling function to all countries and saving output into separate dataframe
+
+```{r}
+# Warp all countries
+warped_maps <- lapply(my_countries, function(cntry) {
+  warp_map_to_pca(cntry, country_map_data, evecDat_plotting)
+})
+
+# Combine all into one data frame
+warped_df <- bind_rows(warped_maps)
+```
+
+Step 6: Plotting the world map warped to Genetic PCA map
+
+```{r}
+ggplot() +
+  geom_polygon(data = warped_df, aes(x = PCAx, y = PCAy, group = group, fill = Country), color = "black", alpha = 0.7) +
+  geom_point(data = evecDat_plotting, aes(x = PC1, y = PC2, color = Country), alpha = 0.4, size = 1, show.legend = FALSE) +
+  theme_minimal() +
+  labs(title = "Real Country Maps Warped to PCA Cluster Shapes", fill = "Country")+
+  theme(
+    legend.key.size = unit(0.2, "cm"),
+    legend.text = element_text(size = 7),
+    legend.title = element_text(size = 8))
+ggsave("output/PCA_genetic_map_not_centered.png", width = 8, height = 6, dpi = 300, bg = "white")
+```
+
+Step 7: The country map center isn't well aligned to the **center of the actual PCA sample cluster, so**
+
+I wanted to center the map into highly clustered area. By first finding the center of the cluster by calcualting mean of the sampes' PCA location;
+
+detecting sample cluster position properly
+
+```{r}
+detect_cluster_core <- function(df) {
+  coords <- df[, c("PC1", "PC2")]
+  center <- colMeans(coords)
+  cov_mat <- cov(coords)
+
+  dists <- mahalanobis(coords, center, cov_mat)
+  threshold <- quantile(dists, 0.90)  # keep 90% closest points
+
+  df[dists <= threshold, ]
+}
+
+warp_map_to_pca <- function(country_name, map_df, pca_df) {
+  country_map <- map_df |> filter(region == country_name)
+  if (nrow(country_map) == 0) return(NULL)
+
+  # Get all PCA samples for this country
+  pca_points <- pca_df |> filter(Country == country_name)
+  if (nrow(pca_points) < 3) return(NULL)
+
+  # 🧠 Detect core cluster (replace this with detect_cluster_dbscan or quantile version)
+  core_cluster <- detect_cluster_core(pca_points)
+  if (nrow(core_cluster) < 3) return(NULL)
+
+  # Bounding box of cluster core
+  bbox_x <- range(core_cluster$PC1)
+  bbox_y <- range(core_cluster$PC2)
+
+  # Normalize country shape
+  map_norm <- normalize_coords(country_map)
+
+  # Scale map to PCA bounding box
+  map_scaled <- map_norm |>
+    mutate(
+      PCAx = bbox_x[1] + (bbox_x[2] - bbox_x[1]) * norm_x,
+      PCAy = bbox_y[1] + (bbox_y[2] - bbox_y[1]) * norm_y
+    )
+
+  # Get core cluster center
+  center_x <- median(core_cluster$PC1)
+  center_y <- median(core_cluster$PC2)
+
+  # Shift map slightly to include the core cluster center
+  bounds_x <- range(map_scaled$PCAx)
+  bounds_y <- range(map_scaled$PCAy)
+  map_shifted <- map_scaled |>
+    mutate(
+      PCAx = PCAx,
+      PCAy = PCAy,
+      Country = country_name,
+      group = country_map$group
+    )
+  return(map_shifted)
+}
+```
+
+Then repeating Step 5 and Step6
+
+```{r}
+# Warp all countries 
+warped_maps <- lapply(my_countries, function(cntry) { warp_map_to_pca(cntry, country_map_data, evecDat_plotting) })
+
+#Combine all into one data frame
+
+warped_df <- bind_rows(warped_maps)
+
+ggplot() +
+  geom_polygon(data = warped_df, aes(x = PCAx, y = PCAy, group = group, fill = Country), color = "black", alpha = 0.7) +
+  geom_point(data = evecDat_plotting, aes(x = PC1, y = PC2, color = Country), alpha = 0.1, size = 1, show.legend = FALSE) +
+  theme_minimal() +
+  labs(title = "Real Country Maps Warped to PCA Cluster Shapes", fill = "Country")+
+  theme(
+    legend.key.size = unit(0.2, "cm"),
+    legend.text = element_text(size = 7),
+    legend.title = element_text(size = 8))
+ggsave("output/PCA_geopgraphic_warp.png", width = 8, height = 6, dpi = 300, bg = "white")
+```
+
+Here, the plot to without the points, to just visualize the world! It came out so beautiful, there is clear barriers between populations, even though some countries close allocated, they did not interact (for example, china and Russia).
+
+While some countries like Uzbekistan, Turkmenistan in real worlds is more in the south side of the Kazakhstan, while in genetic map they are allocated more to the west side of the Kazakhstan.
+
+```{r}
+country_centroids <- warped_df |>
+  group_by(Country) |>
+  summarise(
+    PCAx = mean(PCAx, na.rm = TRUE),
+    PCAy = mean(PCAy, na.rm = TRUE)
+  )
+
+ggplot() +
+  geom_polygon(data = warped_df, aes(x = PCAx, y = PCAy, group = group, fill = Country), color = "black", alpha = 0.7, show.legend = FALSE) +
+  theme_minimal() +
+  labs(title = "Real Country Maps Warped to PCA Cluster Shapes", fill = "Country")+
+  geom_text(data = country_centroids,
+            aes(x = PCAx, y = PCAy, label = Country),
+            size = 1.8, fontface = "bold", color = "white") +
+  theme(
+    legend.key.size = unit(0.2, "cm"),
+    legend.text = element_text(size = 7),
+    legend.title = element_text(size = 8),
+    panel.grid.major = element_line(size = 0.2),
+    panel.grid.minor = element_line(size = 0.1))
+ggsave("output/PCA_geopgraphic_warp_only_countries.png", width = 8, height = 6, dpi = 300, bg = "grey")
+```
+
+The last two images are the main plots. They are so amazing!
