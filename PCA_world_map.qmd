@@ -13,11 +13,25 @@ Creative-nontraditional-artistic output of the PCA \<- How genetic world will lo
 
 Dataset is my own work from data replication project, which directly related to my field of study (population genetic analyses).
 
-Usually the PCA represented the genetic distance of the population collected from different countries, and in representing the data on PCA, PC1 always represents the geographical gradient from west to east, while PC2 is north to south cline. However, its not visually presented how much the genetic PCA of population actually represent the geographically.
+In population genetics, PCA (Principal Component Analysis) is commonly used to visualize genetic distances between populations. Often, the first two PCs reflect geography—e.g., PC1 follows a west–east cline, and PC2 a north–south cline. However, traditional PCA plots do not visually show how much closely the genetic relationships align with actual geography.
 
-The smartpca function out generated .evec and .eval files. I use .evec file to visualize the genetic relationship.
+In this project, I developed a visualization pipeline that:
 
-I saved the all plot outputs in the output folder (because in quarto html they are not visually good, need to be enlarged - or better look shiny app)
+1\) Starts from traditional PCA using `.evec` files (from SMARTPCA)
+
+2\) Colors populations by country
+
+3\) Builds polygons around country-level genetic clusters
+
+4\) Extracts real-world country map shapes
+
+5\) Scales and warps each map to match its genetic shape in PCA space
+
+6\) Visually overlays these country maps in genetic space.
+
+7\) The final result is a warped genetic map of the world, shaped by PCA and filled with real country map and looks like geographic-genetic hybrid (shows which country interacts with eachother).
+
+All final plots are saved in the `output/` directory with high resolution. (because in quarto html they are not visually good, need to be enlarged - or better look shiny app)
 
 I am trying to generate the PCA plot using my eigenvector data.
 
@@ -355,3 +369,12 @@ ggsave("output/PCA_geopgraphic_warp_only_countries.png", width = 8, height = 6, 
 ```
 
 The last two images are the main plots. They are so amazing!
+
+------------------------------------------------------------------------
+
+## 📁 Dataset
+
+-   PCA eigenvector data: `v54_TAK_SBB_HO_PCA.evec`\
+-   Metadata: population-country mappings and plot formatting CSVs\
+-   Derived from a population genetics replication project (modern samples only)\
+-   Ancient samples removed for clearer geographic interpretation

@@ -108,9 +108,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>My goal/idea is Overlaying PCA results on a world map to show the correlation between genetic distances and geographical origins.</p>
 <p>Creative-nontraditional-artistic output of the PCA &lt;- How genetic world will look like?</p>
 <p>Dataset is my own work from data replication project, which directly related to my field of study (population genetic analyses).</p>
-<p>Usually the PCA represented the genetic distance of the population collected from different countries, and in representing the data on PCA, PC1 always represents the geographical gradient from west to east, while PC2 is north to south cline. However, its not visually presented how much the genetic PCA of population actually represent the geographically.</p>
-<p>The smartpca function out generated .evec and .eval files. I use .evec file to visualize the genetic relationship.</p>
-<p>I saved the all plot outputs in the output folder (because in quarto html they are not visually good, need to be enlarged - or better look shiny app)</p>
+<p>In population genetics, PCA (Principal Component Analysis) is commonly used to visualize genetic distances between populations. Often, the first two PCs reflect geography—e.g., PC1 follows a west–east cline, and PC2 a north–south cline. However, traditional PCA plots do not visually show how much closely the genetic relationships align with actual geography.</p>
+<p>In this project, I developed a visualization pipeline that:</p>
+<p>1) Starts from traditional PCA using <code>.evec</code> files (from SMARTPCA)</p>
+<p>2) Colors populations by country</p>
+<p>3) Builds polygons around country-level genetic clusters</p>
+<p>4) Extracts real-world country map shapes</p>
+<p>5) Scales and warps each map to match its genetic shape in PCA space</p>
+<p>6) Visually overlays these country maps in genetic space.</p>
+<p>7) The final result is a warped genetic map of the world, shaped by PCA and filled with real country map and looks like geographic-genetic hybrid (shows which country interacts with eachother).</p>
+<p>All final plots are saved in the <code>output/</code> directory with high resolution. (because in quarto html they are not visually good, need to be enlarged - or better look shiny app)</p>
 <p>I am trying to generate the PCA plot using my eigenvector data.</p>
 <p>This is the PCA mostly presented in the papers [traditional version]</p>
 <div class="cell">
@@ -504,6 +511,19 @@ Attaching package: 'dplyr'</code></pre>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"output/PCA_geopgraphic_warp_only_countries.png"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">bg =</span> <span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The last two images are the main plots. They are so amazing!</p>
+<hr>
+</section>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">📁 Dataset</h2>
+<ul>
+<li>PCA eigenvector data: <code>v54_TAK_SBB_HO_PCA.evec</code><br>
+</li>
+<li>Metadata: population-country mappings and plot formatting CSVs<br>
+</li>
+<li>Derived from a population genetics replication project (modern samples only)<br>
+</li>
+<li>Ancient samples removed for clearer geographic interpretation</li>
+</ul>
 </section>
 
 </main>
